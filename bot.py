@@ -37,6 +37,7 @@ def Telegram_bots(message):
         mycursor2 = mydb.cursor()
         mycursor2.execute("SELECT * FROM TELEGRAM")
         myresult = mycursor2.fetchall()
+        mycursor2.close()
         for x in myresult:
           if x[4] == 'sender':
             bot.send_message(x[1],x[3])
