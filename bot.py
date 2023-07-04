@@ -16,7 +16,7 @@ for x in myresult:
 mycursor.close()
 TOKEN='6380507542:AAFX88kcmwP5qsx1gfDBDdcu8PIZejk0UVw'
 bot=telebot.TeleBot(TOKEN)
-
+test=True
 @bot.message_handler(commands=['start','START'])
 def start(message):
   bot.send_message(message.from_user.id,'hello user this is created by kidus geta')
@@ -28,6 +28,7 @@ def Telegram_bots(message):
     mycursor = mydb.cursor()
   
     mycursor.execute("INSERT INTO TELEGRAM (id2,name,message,seen) VALUES ('"+str(message.from_user.id)+"','"+message.from_user.first_name+"','"+message.text+"','false')")
+    bot.send_message(message.from_user.id,'working')
     mydb.commit()
     mycursor.close()
     if test:
