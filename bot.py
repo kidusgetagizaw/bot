@@ -14,14 +14,14 @@ myresult = mycursor.fetchall()
 for x in myresult:
   print(x)
 mycursor.close()
-mydb.close()
 TOKEN='6380507542:AAFX88kcmwP5qsx1gfDBDdcu8PIZejk0UVw'
 bot=telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start','START'])
 def start(message):
   bot.send_message(message.from_user.id,'hello user this is created by kidus geta')
-test=True
+
+
 @bot.message_handler(func = lambda message: True)
 def Telegram_bots(message):
     global mydb,test
@@ -30,7 +30,6 @@ def Telegram_bots(message):
     mycursor.execute("INSERT INTO TELEGRAM (id2,name,message,seen) VALUES ('"+str(message.from_user.id)+"','"+message.from_user.first_name+"','"+message.text+"','false')")
     mydb.commit()
     mycursor.close()
-    mydb.close()
     if test:
       while True:
         test=False
@@ -45,6 +44,5 @@ def Telegram_bots(message):
             mycursor3.execute("UPDATE TELEGRAM SET seen = 'sended' WHERE seen = 'sender'")
             mydb.commit()
             mycursor3.close()
-            mydb.close()
         time.sleep(1)
 bot.infinity_polling()
