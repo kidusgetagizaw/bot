@@ -13,7 +13,7 @@ mycursor.execute("SELECT * FROM TELEGRAM")
 myresult = mycursor.fetchall()
 for x in myresult:
   print(x)
-cursor.close()
+mycursor.close()
 mydb.close()
 TOKEN='6380507542:AAFX88kcmwP5qsx1gfDBDdcu8PIZejk0UVw'
 bot=telebot.TeleBot(TOKEN)
