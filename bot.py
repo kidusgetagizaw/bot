@@ -13,6 +13,8 @@ mycursor.execute("SELECT * FROM TELEGRAM")
 myresult = mycursor.fetchall()
 for x in myresult:
   print(x)
+cursor.close()
+mydb.close()
 TOKEN='6380507542:AAFX88kcmwP5qsx1gfDBDdcu8PIZejk0UVw'
 bot=telebot.TeleBot(TOKEN)
 
@@ -24,8 +26,11 @@ test=True
 def Telegram_bots(message):
     global mydb,test
     mycursor = mydb.cursor()
+  
     mycursor.execute("INSERT INTO TELEGRAM (id2,name,message,seen) VALUES ('"+str(message.from_user.id)+"','"+message.from_user.first_name+"','"+message.text+"','false')")
     mydb.commit()
+    mycursor.close()
+    mydb.close()
     if test:
       while True:
         test=False
@@ -39,5 +44,7 @@ def Telegram_bots(message):
             mycursor = mydb.cursor()
             mycursor.execute("UPDATE TELEGRAM SET seen = 'sended' WHERE seen = 'sender'")
             mydb.commit()
+            cursor.close()
+            mydb.close()
         time.sleep(1)
 bot.infinity_polling()
