@@ -31,9 +31,8 @@ def Telegram_bots(message):
     bot.send_message(message.from_user.id,'working')
     mydb.commit()
     mycursor.close()
-    if test:
-      while True:
-        test=False
+    while True:
+      bot.send_message(message.from_user.id,'ossssss')
         mycursor2 = mydb.cursor()
         mycursor2.execute("SELECT * FROM TELEGRAM")
         myresult = mycursor2.fetchall()
@@ -46,5 +45,5 @@ def Telegram_bots(message):
             mycursor3.execute("UPDATE TELEGRAM SET seen = 'sended' WHERE seen = 'sender'")
             mydb.commit()
             mycursor3.close()
-        time.sleep(1)
+        time.sleep(5)
 bot.infinity_polling()
